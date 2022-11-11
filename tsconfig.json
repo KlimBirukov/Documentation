@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017", "esnext.asynciterable"],
+    "typeRoots": ["node_modules/@types"],
+    "allowSyntheticDefaultImports": true,                                                                               // allows import <import lib from "lib"> instead <import * from "lib">
+    "experimentalDecorators": true,                                                                                     // allows using decorators
+    "emitDecoratorMetadata": true,                                                                                      // allows enables supports for emitting type metadata for decorators
+    "forceConsistentCasingInFileNames": true,                                                                           // tsc return error when developers try import "./File.ts" like "./file.ts"
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "pretty": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@config": ["config"],
+      "@interfaces/*": ["interfaces/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+  "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
+}

@@ -23,9 +23,19 @@
     "paths": {
       "@/*": ["*"],
       "@config": ["config"],
+      "@controllers/*": ["controllers/*"],
+      "@databases": ["databases"],
+      "@exceptions/*": ["exceptions/*"],
+      "@dtos/*": ["dtos/*"],
       "@interfaces/*": ["interfaces/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+  "include": ["src/**/*.ts", "src/**/*.json",
+    ".env.development.local"
+  ],
   "exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
 }

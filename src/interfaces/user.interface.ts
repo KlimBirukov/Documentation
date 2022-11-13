@@ -1,12 +1,12 @@
 export interface iUser {
-    id: string,
+    id: number,
     email: string,
     password: string,
-    role: eUserRoles
+    role: string,
 }
 
 
-enum eUserRoles {
+export enum eUserRoles {
     ADMIN = "ADMIN",
     MODERATOR = "MODERATOR",
     USER = "USER",

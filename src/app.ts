@@ -1,13 +1,8 @@
-import express from 'express'
-import {
-    NODE_ENV,
-    PORT,
-    DB_DATABASE,
-    DB_HOST,
-    DB_PORT,
-    DB_USER,
-    DB_PASSWORD
-} from '@config'
+import express from 'express';
+
+import {NODE_ENV, PORT} from '@config';
+import {Routes} from '@interfaces/routes.interface';
+import DB from '@databases';
 
 
 export default class App {
@@ -15,10 +10,14 @@ export default class App {
     public env: string;
     public port: string | number;
 
-    constructor() {
+    constructor(routes: Routes[]) {
         this.app = express();
         this.env = NODE_ENV || 'development';
         this.port = PORT || 5000;
+
+        this.connectToDatabase();
+        this.initializeMiddlewares();
+        this.initializeRoutes(routes);
     }
 
     public listen() {
@@ -27,7 +26,19 @@ export default class App {
         })
     }
 
+    private connectToDatabase() {
+        DB.sequelize.sync({force: false})
+            .then(() => 'DB connected')
+            .catch(err => console.log('Something went wrong: ', err));
+    }
+
     private initializeMiddlewares() {
         this.app.use(express.json())
+    }
+
+    private initializeRoutes(routes: Routes[]) {
+        routes.forEach(route => {
+            this.app.use('/', route.router);
+        })
     }
 }
